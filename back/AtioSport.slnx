@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AtioSport.Api/AtioSport.Api.csproj" />
+    <Project Path="src/AtioSport.Application/AtioSport.Application.csproj" />
+    <Project Path="src/AtioSport.Domain/AtioSport.Domain.csproj" />
+    <Project Path="src/AtioSport.Infrastructure/AtioSport.Infrastructure.csproj" />
+  </Folder>
+</Solution>
