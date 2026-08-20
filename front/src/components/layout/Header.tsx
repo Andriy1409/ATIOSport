@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getCategories } from "@/lib/api/categories";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { CartIconLink } from "@/components/cart/CartIconLink";
+import { AuthNav } from "@/components/layout/AuthNav";
 
 export async function Header() {
   const categories = await getCategories();
@@ -25,7 +27,13 @@ export async function Header() {
           ))}
         </nav>
 
-        <MobileNav categories={topLevelCategories} />
+        <div className="flex items-center gap-1">
+          <div className="hidden md:block">
+            <AuthNav />
+          </div>
+          <CartIconLink />
+          <MobileNav categories={topLevelCategories} />
+        </div>
       </div>
     </header>
   );

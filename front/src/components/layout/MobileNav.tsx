@@ -2,10 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 import type { Category } from "@/types/category";
 
 export function MobileNav({ categories }: { categories: Category[] }) {
   const [open, setOpen] = useState(false);
+  const { user, loading, logout } = useAuth();
+  const router = useRouter();
 
   return (
     <div className="md:hidden">
@@ -40,6 +44,50 @@ export function MobileNav({ categories }: { categories: Category[] }) {
               </li>
             ))}
           </ul>
+
+          {!loading && (
+            <div className="mt-3 flex flex-col gap-1 border-t border-zinc-200 pt-3 dark:border-zinc-800">
+              {user ? (
+                <>
+                  <Link
+                    href="/account"
+                    className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    onClick={() => setOpen(false)}
+                  >
+                    {user.name}
+                  </Link>
+                  <button
+                    type="button"
+                    className="block rounded-md px-3 py-2 text-left text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    onClick={async () => {
+                      await logout();
+                      setOpen(false);
+                      router.refresh();
+                    }}
+                  >
+                    Log out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    onClick={() => setOpen(false)}
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    onClick={() => setOpen(false)}
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
+            </div>
+          )}
         </nav>
       )}
     </div>

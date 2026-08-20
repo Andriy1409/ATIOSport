@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { ApiError } from "@/lib/api/client";
 import { getProductById } from "@/lib/api/products";
 import { Badge } from "@/components/ui/Badge";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { formatPrice } from "@/lib/utils";
 
 export default async function ProductPage({ params }: PageProps<"/products/[id]">) {
@@ -26,6 +27,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[id]"
         <Badge variant="success">{product.stockQuantity} in stock</Badge>
       )}
       <p className="text-zinc-600 dark:text-zinc-400">{product.description}</p>
+      <AddToCartButton productId={product.id} stockQuantity={product.stockQuantity} />
     </div>
   );
 }
