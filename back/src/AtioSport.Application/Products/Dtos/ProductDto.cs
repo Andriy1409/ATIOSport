@@ -16,3 +16,11 @@ public record CreateProductDto(
     int StockQuantity,
     string? ImageUrl,
     Guid CategoryId);
+
+public record UpdateProductDto(
+    string Name,
+    string Description,
+    decimal Price,
+    int StockQuantity,
+    string? ImageUrl,
+    Guid CategoryId);

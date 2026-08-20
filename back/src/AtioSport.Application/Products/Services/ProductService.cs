@@ -1,3 +1,4 @@
+using AtioSport.Application.Common.Exceptions;
 using AtioSport.Application.Common.Interfaces;
 using AtioSport.Application.Products.Dtos;
 using AtioSport.Domain.Entities;
@@ -34,6 +35,33 @@ public class ProductService(IProductRepository productRepository) : IProductServ
         await productRepository.SaveChangesAsync(cancellationToken);
 
         return ToDto(product);
+    }
+
+    public async Task<ProductDto> UpdateAsync(Guid id, UpdateProductDto dto, CancellationToken cancellationToken = default)
+    {
+        var product = await productRepository.GetByIdAsync(id, cancellationToken)
+            ?? throw new NotFoundException($"Product {id} was not found.");
+
+        product.Name = dto.Name;
+        product.Description = dto.Description;
+        product.Price = dto.Price;
+        product.StockQuantity = dto.StockQuantity;
+        product.ImageUrl = dto.ImageUrl;
+        product.CategoryId = dto.CategoryId;
+
+        productRepository.Update(product);
+        await productRepository.SaveChangesAsync(cancellationToken);
+
+        return ToDto(product);
+    }
+
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var product = await productRepository.GetByIdAsync(id, cancellationToken)
+            ?? throw new NotFoundException($"Product {id} was not found.");
+
+        productRepository.Remove(product);
+        await productRepository.SaveChangesAsync(cancellationToken);
     }
 
     private static ProductDto ToDto(Product product) => new(

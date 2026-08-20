@@ -1,5 +1,6 @@
 using AtioSport.Application.Products.Dtos;
 using AtioSport.Application.Products.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AtioSport.Api.Controllers;
@@ -23,9 +24,26 @@ public class ProductsController(IProductService productService) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<ProductDto>> Create(CreateProductDto dto, CancellationToken cancellationToken)
     {
         var created = await productService.CreateAsync(dto, cancellationToken);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+    }
+
+    [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<ProductDto>> Update(Guid id, UpdateProductDto dto, CancellationToken cancellationToken)
+    {
+        var updated = await productService.UpdateAsync(id, dto, cancellationToken);
+        return Ok(updated);
+    }
+
+    [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult> Delete(Guid id, CancellationToken cancellationToken)
+    {
+        await productService.DeleteAsync(id, cancellationToken);
+        return NoContent();
     }
 }
