@@ -26,7 +26,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[id]"
       ) : (
         <Badge variant="success">{product.stockQuantity} in stock</Badge>
       )}
-      <p className="text-zinc-600 dark:text-zinc-400">{product.description}</p>
+      <p className="text-muted-foreground">{product.description}</p>
       <AddToCartButton productId={product.id} stockQuantity={product.stockQuantity} />
     </div>
   );

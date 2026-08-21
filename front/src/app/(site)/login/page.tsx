@@ -63,9 +63,9 @@ export default function LoginPage() {
         </Button>
       </form>
 
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      <p className="text-sm text-muted-foreground">
         No account?{" "}
-        <Link href="/register" className="font-medium text-primary hover:underline">
+        <Link href="/register" className="font-medium text-brand hover:underline">
           Register
         </Link>
       </p>

@@ -9,7 +9,7 @@ export default async function HomePage() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Sport equipment for every game</h1>
-        <p className="mt-2 max-w-xl text-zinc-600 dark:text-zinc-400">
+        <p className="mt-2 max-w-xl text-muted-foreground">
           Football gear and equipment for other sports, all in one place.
         </p>
       </div>

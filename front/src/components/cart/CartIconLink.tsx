@@ -11,7 +11,7 @@ export function CartIconLink() {
     <Link
       href="/cart"
       aria-label="Cart"
-      className="relative flex h-11 w-11 items-center justify-center rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
+      className="relative flex h-11 w-11 items-center justify-center rounded-md hover:bg-surface"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="9" cy="21" r="1" />

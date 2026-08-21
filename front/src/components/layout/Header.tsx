@@ -9,9 +9,9 @@ export async function Header() {
   const topLevelCategories = categories.filter((category) => category.parentCategoryId === null);
 
   return (
-    <header className="relative border-b border-zinc-200 dark:border-zinc-800">
+    <header className="relative border-b border-border">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link href="/" className="text-lg font-bold tracking-tight">
+        <Link href="/" className="text-lg font-bold tracking-tight text-brand">
           AtioSport
         </Link>
 
@@ -20,7 +20,7 @@ export async function Header() {
             <Link
               key={category.id}
               href={`/categories/${category.slug}`}
-              className="rounded-md px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              className="rounded-md px-3 py-2 text-sm font-medium hover:bg-surface"
             >
               {category.name}
             </Link>

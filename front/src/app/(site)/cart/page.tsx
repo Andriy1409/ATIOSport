@@ -24,7 +24,7 @@ export default function CartPage() {
   }, []);
 
   if (loading) {
-    return <p className="text-sm text-zinc-500 dark:text-zinc-400">Loading cart...</p>;
+    return <p className="text-sm text-muted-foreground">Loading cart...</p>;
   }
 
   const rows = items
@@ -37,7 +37,7 @@ export default function CartPage() {
     return (
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold tracking-tight">Cart</h1>
-        <p className="text-zinc-600 dark:text-zinc-400">Your cart is empty.</p>
+        <p className="text-muted-foreground">Your cart is empty.</p>
         <Link href="/">
           <Button variant="outline">Continue shopping</Button>
         </Link>
@@ -53,13 +53,13 @@ export default function CartPage() {
         {rows.map(({ item, product }) => (
           <div
             key={item.productId}
-            className="flex flex-col gap-3 border-b border-zinc-200 pb-4 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800"
+            className="flex flex-col gap-3 border-b border-border pb-4 sm:flex-row sm:items-center sm:justify-between"
           >
             <div>
               <Link href={`/products/${product.id}`} className="font-medium hover:underline">
                 {product.name}
               </Link>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">{formatPrice(product.price)}</p>
+              <p className="text-sm text-muted-foreground">{formatPrice(product.price)}</p>
             </div>
 
             <div className="flex items-center gap-3">
@@ -82,7 +82,7 @@ export default function CartPage() {
         ))}
       </div>
 
-      <div className="flex items-center justify-between border-t border-zinc-200 pt-4 dark:border-zinc-800">
+      <div className="flex items-center justify-between border-t border-border pt-4">
         <span className="text-lg font-semibold">Total</span>
         <span className="text-lg font-bold">{formatPrice(total)}</span>
       </div>

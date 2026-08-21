@@ -44,7 +44,7 @@ export function ProductForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-md border border-border p-4">
       <Field label="Name" htmlFor="product-name">
         <Input id="product-name" value={name} onChange={(e) => setName(e.target.value)} required />
       </Field>

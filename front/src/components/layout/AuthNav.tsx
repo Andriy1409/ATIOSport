@@ -16,10 +16,10 @@ export function AuthNav() {
   if (!user) {
     return (
       <div className="flex items-center gap-1">
-        <Link href="/login" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">
+        <Link href="/login" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-surface">
           Log in
         </Link>
-        <Link href="/register" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">
+        <Link href="/register" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-surface">
           Register
         </Link>
       </div>
@@ -29,7 +29,7 @@ export function AuthNav() {
   return (
     <div className="flex items-center gap-2">
       {user.isAdmin && (
-        <Link href="/admin/products" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">
+        <Link href="/admin/products" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-surface">
           Admin panel
         </Link>
       )}

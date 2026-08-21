@@ -68,9 +68,9 @@ export default function RegisterPage() {
         </Button>
       </form>
 
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      <p className="text-sm text-muted-foreground">
         Already have an account?{" "}
-        <Link href="/login" className="font-medium text-primary hover:underline">
+        <Link href="/login" className="font-medium text-brand hover:underline">
           Log in
         </Link>
       </p>

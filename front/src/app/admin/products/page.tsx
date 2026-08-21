@@ -78,7 +78,7 @@ export default function AdminProductsPage() {
   }
 
   if (loading) {
-    return <p className="text-sm text-zinc-500 dark:text-zinc-400">Loading products...</p>;
+    return <p className="text-sm text-muted-foreground">Loading products...</p>;
   }
 
   return (
@@ -97,12 +97,12 @@ export default function AdminProductsPage() {
         />
       )}
 
-      <div className="flex flex-col divide-y divide-zinc-200 dark:divide-zinc-800">
+      <div className="flex flex-col divide-y divide-border">
         {products.map((product) => (
           <div key={product.id} className="flex items-center justify-between gap-4 py-3">
             <div>
               <p className="font-medium">{product.name}</p>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="text-sm text-muted-foreground">
                 {categoryLabel(
                   categories.find((c) => c.id === product.categoryId) ?? { name: "Unknown", parentCategoryId: null },
                   categories,

@@ -70,14 +70,14 @@ export default function CheckoutPage() {
   }
 
   if (loading) {
-    return <p className="text-sm text-zinc-500 dark:text-zinc-400">Loading checkout...</p>;
+    return <p className="text-sm text-muted-foreground">Loading checkout...</p>;
   }
 
   if (rows.length === 0) {
     return (
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold tracking-tight">Checkout</h1>
-        <p className="text-zinc-600 dark:text-zinc-400">Your cart is empty.</p>
+        <p className="text-muted-foreground">Your cart is empty.</p>
         <Link href="/">
           <Button variant="outline">Continue shopping</Button>
         </Link>
@@ -89,7 +89,7 @@ export default function CheckoutPage() {
     <div className="flex max-w-xl flex-col gap-6">
       <h1 className="text-2xl font-bold tracking-tight">Checkout</h1>
 
-      <div className="flex flex-col gap-2 border-b border-zinc-200 pb-4 dark:border-zinc-800">
+      <div className="flex flex-col gap-2 border-b border-border pb-4">
         {rows.map(({ item, product }) => (
           <div key={item.productId} className="flex items-center justify-between text-sm">
             <span>

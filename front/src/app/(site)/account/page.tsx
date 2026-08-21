@@ -16,7 +16,7 @@ export default function AccountPage() {
   }, [loading, user, router]);
 
   if (loading || !user) {
-    return <p className="text-sm text-zinc-500 dark:text-zinc-400">Loading account...</p>;
+    return <p className="text-sm text-muted-foreground">Loading account...</p>;
   }
 
   return (
@@ -25,11 +25,11 @@ export default function AccountPage() {
 
       <Card className="flex flex-col gap-3 p-4">
         <div>
-          <p className="text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Name</p>
+          <p className="text-xs uppercase tracking-wide text-muted-foreground">Name</p>
           <p className="font-medium">{user.name}</p>
         </div>
         <div>
-          <p className="text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Email</p>
+          <p className="text-xs uppercase tracking-wide text-muted-foreground">Email</p>
           <p className="font-medium">{user.email}</p>
         </div>
       </Card>
