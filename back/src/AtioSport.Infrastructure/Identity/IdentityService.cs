@@ -43,7 +43,13 @@ public class IdentityService(
     public async Task<CurrentUserDto?> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken = default)
     {
         var user = await userManager.FindByIdAsync(userId.ToString());
-        return user is null ? null : new CurrentUserDto(user.Id, user.Name, user.Email ?? string.Empty);
+        if (user is null)
+        {
+            return null;
+        }
+
+        var roles = await userManager.GetRolesAsync(user);
+        return new CurrentUserDto(user.Id, user.Name, user.Email ?? string.Empty, roles.Contains("Admin"));
     }
 
     public async Task<List<ClientDto>> GetClientsAsync(CancellationToken cancellationToken = default)

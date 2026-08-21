@@ -28,6 +28,11 @@ export function AuthNav() {
 
   return (
     <div className="flex items-center gap-2">
+      {user.isAdmin && (
+        <Link href="/admin/products" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800">
+          Admin panel
+        </Link>
+      )}
       <Link href="/account" className="text-sm font-medium hover:underline">
         {user.name}
       </Link>

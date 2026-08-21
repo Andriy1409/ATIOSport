@@ -86,6 +86,10 @@ export default function CartPage() {
         <span className="text-lg font-semibold">Total</span>
         <span className="text-lg font-bold">{formatPrice(total)}</span>
       </div>
+
+      <Link href="/checkout">
+        <Button className="w-full sm:w-auto">Proceed to checkout</Button>
+      </Link>
     </div>
   );
 }

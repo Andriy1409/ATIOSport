@@ -14,3 +14,11 @@ const priceFormatter = new Intl.NumberFormat("uk-UA", {
 export function formatPrice(price: number) {
   return priceFormatter.format(price);
 }
+
+export function categoryLabel(category: { name: string; parentCategoryId: string | null }, categories: { id: string; name: string }[]) {
+  if (!category.parentCategoryId) {
+    return category.name;
+  }
+  const parent = categories.find((c) => c.id === category.parentCategoryId);
+  return parent ? `${parent.name} > ${category.name}` : category.name;
+}

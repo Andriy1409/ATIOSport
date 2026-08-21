@@ -2,7 +2,7 @@ namespace AtioSport.Application.Common.Interfaces;
 
 public record RegisterResult(bool Succeeded, IReadOnlyList<string> Errors);
 
-public record CurrentUserDto(Guid Id, string Name, string Email);
+public record CurrentUserDto(Guid Id, string Name, string Email, bool IsAdmin);
 
 public record ClientDto(Guid Id, string Name, string Email, string Phone);
 
