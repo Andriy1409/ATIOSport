@@ -6,8 +6,6 @@ import Link from "next/link";
 import { useCartStore } from "@/hooks/useCartStore";
 import { useAuth } from "@/contexts/AuthContext";
 import { getProducts } from "@/lib/api/products";
-import { createOrder } from "@/lib/api/orders";
-import { ApiError } from "@/lib/api/client";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { formatPrice } from "@/lib/utils";
@@ -50,20 +48,25 @@ export default function CheckoutPage() {
     setSubmitting(true);
 
     try {
-      await createOrder({
-        customerName,
-        customerPhone,
-        items: items.map((item) => ({ productId: item.productId, quantity: item.quantity })),
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName,
+          customerPhone,
+          items: items.map((item) => ({ productId: item.productId, quantity: item.quantity })),
+        }),
       });
+
+      if (!response.ok) {
+        const body = await response.json().catch(() => null);
+        setError(body?.title ?? "Something went wrong. Please try again.");
+        return;
+      }
+
       clearCart();
       window.alert("Order placed successfully!");
       router.push("/");
-    } catch (err) {
-      if (err instanceof ApiError) {
-        setError(err.message);
-      } else {
-        setError("Something went wrong. Please try again.");
-      }
     } finally {
       setSubmitting(false);
     }

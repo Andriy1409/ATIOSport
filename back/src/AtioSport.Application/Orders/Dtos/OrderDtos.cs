@@ -6,4 +6,4 @@ public record CreateOrderDto(string CustomerName, string CustomerPhone, List<Ord
 
 public record OrderItemDto(Guid ProductId, string ProductName, decimal UnitPrice, int Quantity);
 
-public record OrderDto(Guid Id, string CustomerName, string CustomerPhone, List<OrderItemDto> Items);
+public record OrderDto(Guid Id, string CustomerName, string CustomerPhone, DateTime CreatedAtUtc, List<OrderItemDto> Items);

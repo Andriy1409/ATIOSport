@@ -1,27 +1,26 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 
 export default function AccountPage() {
-  const router = useRouter();
   const { user, loading } = useAuth();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.replace("/login");
-    }
-  }, [loading, user, router]);
+  const [editing, setEditing] = useState(false);
 
   if (loading || !user) {
     return <p className="text-sm text-muted-foreground">Loading account...</p>;
   }
 
   return (
-    <div className="mx-auto flex max-w-sm flex-col gap-4">
-      <h1 className="text-2xl font-bold tracking-tight">Account</h1>
+    <div className="flex max-w-sm flex-col gap-4">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold tracking-tight">Personal information</h1>
+        <Button variant="outline" size="sm" onClick={() => setEditing((prev) => !prev)}>
+          Edit
+        </Button>
+      </div>
 
       <Card className="flex flex-col gap-3 p-4">
         <div>
@@ -33,6 +32,10 @@ export default function AccountPage() {
           <p className="font-medium">{user.email}</p>
         </div>
       </Card>
+
+      {editing && (
+        <p className="text-sm text-muted-foreground">Profile editing is coming soon.</p>
+      )}
     </div>
   );
 }

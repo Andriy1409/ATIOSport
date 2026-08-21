@@ -20,5 +20,6 @@ export interface Order {
   id: string;
   customerName: string;
   customerPhone: string;
+  createdAtUtc: string;
   items: OrderItem[];
 }

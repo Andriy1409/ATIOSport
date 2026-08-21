@@ -3,9 +3,9 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/api/account";
 import { ApiError } from "@/lib/api/client";
 import { AUTH_COOKIE_NAME } from "@/lib/authCookie";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { CustomerSidebar } from "@/components/account/CustomerSidebar";
 
-export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AccountLayout({ children }: { children: React.ReactNode }) {
   const token = (await cookies()).get(AUTH_COOKIE_NAME)?.value;
   if (!token) {
     redirect("/login");
@@ -18,14 +18,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     throw error;
   });
 
-  if (!user || !user.isAdmin) {
-    redirect("/");
+  if (!user) {
+    redirect("/login");
   }
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row">
-      <AdminSidebar />
-      <main className="flex-1 min-w-0 px-6 py-8 lg:px-10">{children}</main>
+    <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+      <CustomerSidebar />
+      <div className="min-w-0 flex-1">{children}</div>
     </div>
   );
 }

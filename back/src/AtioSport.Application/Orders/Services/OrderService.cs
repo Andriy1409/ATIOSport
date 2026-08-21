@@ -5,7 +5,7 @@ using AtioSport.Domain.Entities;
 
 namespace AtioSport.Application.Orders.Services;
 
-public class OrderService(IProductRepository productRepository, IRepository<Order> orderRepository) : IOrderService
+public class OrderService(IProductRepository productRepository, IOrderRepository orderRepository) : IOrderService
 {
     public async Task<OrderDto> CreateAsync(CreateOrderDto dto, Guid? userId, CancellationToken cancellationToken = default)
     {
@@ -43,9 +43,16 @@ public class OrderService(IProductRepository productRepository, IRepository<Orde
         return ToDto(order);
     }
 
+    public async Task<List<OrderDto>> GetMyOrdersAsync(Guid userId, CancellationToken cancellationToken = default)
+    {
+        var orders = await orderRepository.GetByUserIdAsync(userId, cancellationToken);
+        return orders.Select(ToDto).ToList();
+    }
+
     private static OrderDto ToDto(Order order) => new(
         order.Id,
         order.CustomerName,
         order.CustomerPhone,
+        order.CreatedAtUtc,
         order.OrderItems.Select(i => new OrderItemDto(i.ProductId, i.ProductName, i.UnitPrice, i.Quantity)).ToList());
 }

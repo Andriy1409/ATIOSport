@@ -22,7 +22,7 @@ public static class DependencyInjection
 
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IRepository<Category>, Repository<Category>>();
-        services.AddScoped<IRepository<Order>, Repository<Order>>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
 
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
         services.AddScoped<JwtTokenGenerator>();

@@ -29,7 +29,7 @@ export function AuthNav() {
   return (
     <div className="flex items-center gap-2">
       {user.isAdmin && (
-        <Link href="/admin/products" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-surface">
+        <Link href="/admin" className="rounded-md px-3 py-2 text-sm font-medium hover:bg-surface">
           Admin panel
         </Link>
       )}

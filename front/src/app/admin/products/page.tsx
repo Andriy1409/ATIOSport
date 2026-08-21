@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import { getCategories } from "@/lib/api/categories";
 import { getProducts } from "@/lib/api/products";
 import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 import { ProductForm } from "@/components/admin/ProductForm";
 import { categoryLabel, formatPrice } from "@/lib/utils";
 import type { Category } from "@/types/category";
 import type { CreateProductInput, Product } from "@/types/product";
+
+const LOW_STOCK_THRESHOLD = 5;
 
 type Editing = "new" | Product | null;
 
@@ -107,10 +110,17 @@ export default function AdminProductsPage() {
                   categories.find((c) => c.id === product.categoryId) ?? { name: "Unknown", parentCategoryId: null },
                   categories,
                 )}{" "}
-                &middot; {formatPrice(product.price)} &middot; {product.stockQuantity} in stock
+                &middot; {formatPrice(product.price)}
               </p>
             </div>
-            <div className="flex shrink-0 gap-2">
+            <div className="flex shrink-0 items-center gap-3">
+              {product.stockQuantity === 0 ? (
+                <Badge variant="danger">Out of stock</Badge>
+              ) : product.stockQuantity <= LOW_STOCK_THRESHOLD ? (
+                <Badge variant="warning">{product.stockQuantity} left</Badge>
+              ) : (
+                <Badge variant="success">{product.stockQuantity} in stock</Badge>
+              )}
               <Button variant="outline" size="sm" onClick={() => setEditing(product)}>
                 Edit
               </Button>
