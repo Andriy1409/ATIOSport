@@ -18,7 +18,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             ref={ref}
             type={visible ? "text" : "password"}
             className={cn(
-              "h-10 w-full rounded-md border border-border bg-transparent px-3 pr-10 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-brand",
+              "h-10 w-full rounded-[var(--radius-input)] border border-border bg-transparent px-3 pr-10 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-brand",
               error && "border-danger focus-visible:ring-danger",
               className,
             )}

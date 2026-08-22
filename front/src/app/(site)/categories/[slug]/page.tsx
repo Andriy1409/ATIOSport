@@ -24,9 +24,9 @@ export default async function CategoryPage({ params }: PageProps<"/categories/[s
       {childCategories.length > 0 && (
         <div>
           <h2 className="mb-3 text-lg font-semibold">Subcategories</h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {childCategories.map((child) => (
-              <CategoryTile key={child.id} category={child} />
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+            {childCategories.map((child, index) => (
+              <CategoryTile key={child.id} category={child} index={index} />
             ))}
           </div>
         </div>
@@ -34,7 +34,7 @@ export default async function CategoryPage({ params }: PageProps<"/categories/[s
 
       <div>
         <h2 className="mb-3 text-lg font-semibold">Products</h2>
-        <ProductGrid products={categoryProducts} />
+        <ProductGrid products={categoryProducts} categories={categories} />
       </div>
     </div>
   );

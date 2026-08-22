@@ -13,6 +13,12 @@
   --accent-cta: #ff7a29;
   --accent-cta-hover: #e8661a;
 
+  --accent-2: #7a8a5e;
+  --accent-tint: #232936;
+  --accent-tint-ink: var(--accent-cta);
+  --accent-2-tint: #232936;
+  --accent-2-tint-ink: var(--accent-2);
+
   --text-primary: #f5f6f8;
   --text-secondary: #9aa3b2;
 
@@ -21,6 +27,61 @@
   --warning: #d97706;
 
   --radius: 0.5rem;
+  --radius-button: var(--radius);
+  --radius-card: var(--radius);
+  --radius-input: var(--radius);
+
+  --font-heading: var(--font-geist-sans);
+  --font-body: var(--font-geist-sans);
+}
+
+/* Storefront ("Organic") theme — scoped to app/(site), admin keeps the dark tokens above. */
+.theme-storefront {
+  --bg-primary: #f5ead8;
+  --bg-secondary: #ebddc5;
+  --bg-secondary-hover: #e2d2b6;
+
+  --border: color-mix(in srgb, #201e1d 16%, transparent);
+
+  --brand-blue: #8c491a;
+  --brand-blue-hover: #643312;
+
+  --accent-cta: #c67139;
+  --accent-cta-hover: #b2622d;
+
+  --accent-2: #7a8a5e;
+  --accent-tint: #fff2eb;
+  --accent-tint-ink: #8c491a;
+  --accent-2-tint: #f0fae1;
+  --accent-2-tint-ink: #56633f;
+
+  --text-primary: #201e1d;
+  --text-secondary: color-mix(in srgb, #201e1d 60%, transparent);
+
+  --success: #56633f;
+  --danger: #b2432d;
+  --warning: #8c491a;
+
+  --radius: 16px;
+  --radius-button: 999px;
+  --radius-card: 24px;
+  --radius-input: 999px;
+
+  --font-heading: var(--font-caprasimo);
+  --font-body: var(--font-figtree);
+}
+
+.theme-storefront h1,
+.theme-storefront h2,
+.theme-storefront h3,
+.theme-storefront h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.washed {
+  filter: saturate(0.6) contrast(0.85) brightness(1.1) opacity(0.94);
 }
 
 @theme inline {
@@ -35,6 +96,12 @@
   --color-primary: var(--accent-cta);
   --color-primary-hover: var(--accent-cta-hover);
   --color-primary-foreground: #ffffff;
+
+  --color-accent-2: var(--accent-2);
+  --color-accent-tint: var(--accent-tint);
+  --color-accent-tint-ink: var(--accent-tint-ink);
+  --color-accent-2-tint: var(--accent-2-tint);
+  --color-accent-2-tint-ink: var(--accent-2-tint-ink);
 
   --color-foreground: var(--text-primary);
   --color-muted-foreground: var(--text-secondary);
@@ -53,4 +120,10 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.theme-storefront {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
 }

@@ -10,7 +10,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         builder.Property(p => p.Name).IsRequired().HasMaxLength(200);
         builder.Property(p => p.Description).HasMaxLength(2000);
-        builder.Property(p => p.Price).HasColumnType("decimal(18,2)");
+        builder.Property(p => p.Price).HasPrecision(18, 2);
 
         builder.HasOne(p => p.Category)
             .WithMany(c => c.Products)

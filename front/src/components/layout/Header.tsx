@@ -9,9 +9,9 @@ export async function Header() {
   const topLevelCategories = categories.filter((category) => category.parentCategoryId === null);
 
   return (
-    <header className="relative border-b border-border">
+    <header className="relative">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link href="/" className="text-lg font-bold tracking-tight text-brand">
+        <Link href="/" className="font-(family-name:--font-heading) text-lg text-brand">
           AtioSport
         </Link>
 
@@ -20,11 +20,14 @@ export async function Header() {
             <Link
               key={category.id}
               href={`/categories/${category.slug}`}
-              className="rounded-md px-3 py-2 text-sm font-medium hover:bg-surface"
+              className="rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium hover:bg-surface"
             >
               {category.name}
             </Link>
           ))}
+          <Link href="/catalog" className="rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium hover:bg-surface">
+            Catalog
+          </Link>
         </nav>
 
         <div className="flex items-center gap-1">

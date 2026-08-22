@@ -4,3 +4,10 @@ export interface Category {
   slug: string;
   parentCategoryId: string | null;
 }
+
+export interface CreateCategoryInput {
+  name: string;
+  parentCategoryId: string | null;
+}
+
+export type UpdateCategoryInput = CreateCategoryInput;

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Menu, X } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import type { Category } from "@/types/category";
 
@@ -17,16 +18,10 @@ export function MobileNav({ categories }: { categories: Category[] }) {
         type="button"
         aria-label="Toggle menu"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex h-11 w-11 items-center justify-center rounded-md hover:bg-surface"
+        className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-button)] hover:bg-surface"
       >
         <span className="sr-only">Menu</span>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          {open ? (
-            <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-          ) : (
-            <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-          )}
-        </svg>
+        {open ? <X strokeWidth={2} className="h-5.5 w-5.5" /> : <Menu strokeWidth={2} className="h-5.5 w-5.5" />}
       </button>
 
       {open && (
@@ -36,13 +31,22 @@ export function MobileNav({ categories }: { categories: Category[] }) {
               <li key={category.id}>
                 <Link
                   href={`/categories/${category.slug}`}
-                  className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-surface"
+                  className="block rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium hover:bg-surface-hover"
                   onClick={() => setOpen(false)}
                 >
                   {category.name}
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/catalog"
+                className="block rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium hover:bg-surface-hover"
+                onClick={() => setOpen(false)}
+              >
+                Catalog
+              </Link>
+            </li>
           </ul>
 
           {!loading && (
@@ -52,7 +56,7 @@ export function MobileNav({ categories }: { categories: Category[] }) {
                   {user.isAdmin && (
                     <Link
                       href="/admin"
-                      className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-surface"
+                      className="block rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium hover:bg-surface-hover"
                       onClick={() => setOpen(false)}
                     >
                       Admin panel
@@ -60,14 +64,14 @@ export function MobileNav({ categories }: { categories: Category[] }) {
                   )}
                   <Link
                     href="/account"
-                    className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-surface"
+                    className="block rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium hover:bg-surface-hover"
                     onClick={() => setOpen(false)}
                   >
                     {user.name}
                   </Link>
                   <button
                     type="button"
-                    className="block rounded-md px-3 py-2 text-left text-sm font-medium hover:bg-surface"
+                    className="block rounded-[var(--radius-button)] px-3 py-2 text-left text-sm font-medium hover:bg-surface-hover"
                     onClick={async () => {
                       await logout();
                       setOpen(false);
@@ -81,14 +85,14 @@ export function MobileNav({ categories }: { categories: Category[] }) {
                 <>
                   <Link
                     href="/login"
-                    className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-surface"
+                    className="block rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium hover:bg-surface-hover"
                     onClick={() => setOpen(false)}
                   >
                     Log in
                   </Link>
                   <Link
                     href="/register"
-                    className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-surface"
+                    className="block rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium hover:bg-surface-hover"
                     onClick={() => setOpen(false)}
                   >
                     Register
